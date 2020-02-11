@@ -19,6 +19,10 @@ header <- dashboardHeader(
 sidebar <- dashboardSidebar(
   sidebarMenu(
     menuItem(
+      "Home",
+      tabName = "home"
+      ),
+    menuItem(
       "Mean - Normal",
       tabName = "mean_normal",
       menuSubItem(
@@ -56,9 +60,61 @@ sidebar <- dashboardSidebar(
 
 # Body Function -----------------------------------------------------------
 
+one_sample_input <- box(
+  title = "Parameter",
+  numericInput(
+    "one_sample_t_delta",
+    label = "Minimal detektierbare Differenz (Delta)",
+    value = 0,
+    step = 0.5
+    ),
+  numericInput(
+    "one_sample_t_sd",
+    label = "Geschätzte Standardabweichung (SD)",
+    value = 0,
+    step = 0.5
+    ),
+  numericInput(
+    "one_sample_alpha",
+    label = "Fehler erster Art (Alpha)",
+    min = 0,
+    max = 10,
+    value = 5,
+    step = 0.5
+    ),
+  numericInput(
+    "one_sample_power",
+    label = "Teststärke (Power)",
+    min = 50, 
+    max = 100,
+    value = 80,
+    step = 0.5
+    ),
+  radioButtons(
+    "one_sample_sided",
+    label = "Art des Tests",
+    choices = c("Einseitig", "Zweiseitig"),
+    selected = "Zweiseitig" 
+  )
+  )
 
 
-body <- dashboardBody()
+body <- dashboardBody(
+  tabItems(
+    tabItem(
+      tabName = "home",
+      h1("pfm medical - Fallzahlberechnung")#,
+      #tags$img(src = "pfmlogo.png")
+      ),
+    tabItem(
+      tabName = "one-sample-t",
+            h1("Test"),
+      column(width = 12, one_sample_input)
+      ),
+    tabItem(tabName = "two-sample-t",
+            h1("Test2"))
+  )
+)
 
 
 # User Interface Function -------------------------------------------------
