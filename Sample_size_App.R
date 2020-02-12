@@ -103,7 +103,7 @@ body <- dashboardBody(
   tabItems(
     tabItem(
       tabName = "home",
-      h1("pfm medical - Fallzahlberechnung")#,
+      h1("pfm medical - App zur Fallzahlberechnung")#,
       #tags$img(src = "pfmlogo.png")
       ),
     tabItem(
